@@ -19,6 +19,13 @@
         }
     }
 
+function RecordQuestion() {
+    console.log("RecordQuestion(" + question + ")");
+    // Store question in localStorage
+    localStorage.setItem('RecordedQuestion', question);
+    console.log("Stored question: " + question);
+    return true; // Return true for success
+}
     function getWindowHeight() {
         var height = 0;
         if (window.innerHeight){

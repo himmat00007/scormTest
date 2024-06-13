@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Launch Page in Another Window</title>
+    <script>
+        function openNewWindow() {
+            // Open a new window with specific dimensions and features
+            var newWindow = window.open('launchpage.html', '_blank', 'width=600,height=400');
+
+            // Wait for the new window to finish loading
+            newWindow.onload = function() {
+                // Send a message to the child window
+                newWindow.postMessage('Hello from parent!', '*');
+            };
+
+            // Listen for messages from the child window
+            window.addEventListener('message', function(event) {
+                alert('hi')
+                // Handle messages received from child window
+                if (event.origin === 'http://localhost:3000' && event.source === newWindow) {
+                    console.log('Message from child window:', event.data);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <button onclick="openNewWindow()">Open Page in New Window</button>
+</body>
+</html>
